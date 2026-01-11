@@ -7,26 +7,46 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // אנחנו לא רוצים להציג את הסרגל במסך הכניסה
+  // בדיקה אם אנחנו בדף כניסה - אם כן, לא מחזירים כלום (null)
   if (location.pathname === '/login' || location.pathname === '/') {
     return null;
   }
 
-  return (
-    <AppBar position="static" sx={{ mb: 4 }}>
-      <Toolbar>
-        {/* לוגו ואייקון בצד ימין */}
-        <Pets sx={{ mr: 2 }} />
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, cursor: 'pointer' }} onClick={() => navigate('/dashboard')}>
-          MyVet
-        </Typography>
+  // פונקציה לטיפול ביציאה מהמערכת
+  const handleLogout = () => {
+    // כאן בעתיד נוסיף: localStorage.removeItem('token');
+    navigate('/login');
+  };
 
-        {/* כפתורים בצד שמאל */}
-        <Box>
-          <Button color="inherit" onClick={() => navigate('/dashboard')}>יומן תורים</Button>
-          <Button color="error" onClick={() => navigate('/login')}>יציאה</Button>
-        </Box>
-      </Toolbar>
-    </AppBar>
+  return (
+    // הוספתי dir="rtl" כדי לתמוך בעברית בצורה נכונה
+    <Box dir="rtl" sx={{ flexGrow: 1, mb: 4 }}>
+      <AppBar position="static">
+        <Toolbar>
+          {/* צד ימין: לוגו ושם המערכת */}
+          <Pets sx={{ ml: 2 }} /> {/* החלפתי ל-ml (margin-left) שיתאים לעברית */}
+          
+          <Typography 
+            variant="h6" 
+            component="div" 
+            sx={{ flexGrow: 1, cursor: 'pointer', fontWeight: 'bold' }} 
+            onClick={() => navigate('/dashboard')}
+          >
+            MyVet
+          </Typography>
+
+          {/* צד שמאל: כפתורי ניווט */}
+          <Box>
+            <Button color="inherit" onClick={() => navigate('/dashboard')}>
+              יומן תורים
+            </Button>
+            
+            <Button color="error" variant="contained" sx={{ mr: 2 }} onClick={handleLogout}>
+              יציאה
+            </Button>
+          </Box>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }

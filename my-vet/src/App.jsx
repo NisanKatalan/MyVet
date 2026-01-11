@@ -8,7 +8,7 @@ import Navbar from './Navbar.jsx';
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />  {/* <--- האם השורה הזו קיימת מעל ה-Routes? */}
+      <Navbar />
       
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
