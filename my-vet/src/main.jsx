@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // יצירת ערכת נושא בסיסית (אפשר לשנות צבעים כאן בעתיד)
 const theme = createTheme({
